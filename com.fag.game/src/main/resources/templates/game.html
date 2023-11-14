@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detetive de palavras</title>
+    <link rel="stylesheet" type="text/css" href="gamestyle.css">
+    <style>
+        body {
+            font-family: 'Calibri', sans-serif;
+            position: relative;
+        }
+
+        h1 {
+            position: absolute;
+            top: 0px;
+            left: 500px;
+            color: black;
+            font-size: 48px;
+        }
+
+        p {
+            position: absolute;
+            top: 120px;
+            left: 500px;
+            color: black;
+            font-size: 24px;
+        }
+
+        label {
+            position: absolute;
+            top: 100px;
+            left: 500px;
+            color: black;
+            font-size: 24px;
+        }
+
+        select {
+            background-color: rgb(255, 255, 255);
+            color: #333;
+            border: 2px solid #ccc;
+            padding: 3px;
+            border-radius: 5px;
+            position: absolute;
+            top: 102px;
+            left: 800px;
+            font-size: 16px;
+        }
+
+        span {
+            position: absolute;
+            top: 170px;
+            left: 500px;
+            color: black;
+            font-size: 24px;
+        }
+
+        form {
+            position: absolute;
+            top: 190px;
+            left: 500px;
+            font-size: 18px;
+        }
+
+        .clickedNotIncludes {
+            font-family: 'Calibri', Arial, monospace;
+            font-weight: bold;
+            width: 40px;
+            height: 40px;
+            border: none;
+            z-index: 1;
+            border-radius: 50%;
+            margin: 5px;
+            font-size: 20px;
+            position: relative;
+            transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+            background-image: rgb(133, 133, 133);
+            background-color: rgb(98, 98, 98);
+            color: rgb(218, 14, 14);
+        }
+
+        .clickedIncludes {
+            font-family: 'Calibri', Arial, monospace;
+            font-weight: bold;
+            width: 40px;
+            height: 40px;
+            border: none;
+            z-index: 1;
+            border-radius: 50%;
+            margin: 5px;
+            font-size: 20px;
+            position: relative;
+            transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+            background-image: rgb(133, 133, 133);
+            background-color: rgb(98, 98, 98);
+            color: rgb(31, 14, 218);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <div class="cloud large cloud-1">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="cloud normal cloud-2">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="cloud small cloud-3">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="cloud tiny cloud-4">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="cloud large cloud-5">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="cloud normal cloud-6">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="cloud small cloud-7">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="cloud tiny cloud-8">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="cloud small cloud-9">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="cloud normal cloud-10">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="cloud tiny cloud-11">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="cloud small cloud-12">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <div class="sun">
+        <div class="sun__border">
+            <div class="sun__outer" id="sun-outer">
+                <div class="sun__rays" id="sun-rays-1">
+                    <div></div>
+                </div>
+                <div class="sun__rays" id="sun-rays-2">
+                    <div></div>
+                </div>
+                <div class="sun__rays" id="sun-rays-3">
+                    <div></div>
+                </div>
+                <div class="sun__rays" id="sun-rays-4">
+                    <div></div>
+                </div>
+                <div class="sun__rays" id="sun-rays-5">
+                    <div></div>
+                </div>
+                <div class="sun__rays" id="sun-rays-6">
+                    <div></div>
+                </div>
+                <div class="sun__rays" id="sun-rays-7">
+                    <div></div>
+                </div>
+                <div class="sun__rays" id="sun-rays-8">
+                    <div></div>
+                </div>
+            </div>
+
+            <div class="sun__inner">
+                <div class="sun__body">
+                    <div class="sun__shine"></div>
+                    <div class="sun__face">
+                        <div class="sun__face-eye sun__face-eye--left"></div>
+                        <div class="sun__face-eye sun__face-eye--right"></div>
+                        <div class="sun__face-mouth"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="img-background">
+
+            <div class="mountain" id="m1">
+                <div class="triangle" id="m1-t1">
+                    <div class="triangle" id="m1-t1-1"></div>
+                    <div class="triangle" id="m1-t1-2"></div>
+                </div>
+                <div class="triangle" id="m1-t2">
+                    <div class="triangle" id="m1-t2-1"></div>
+                    <div class="triangle" id="m1-t2-2"></div>
+                </div>
+
+            </div>
+            <div class="mountain" id="m2">
+                <div class="triangle" id="m2-t1"></div>
+                <div class="triangle" id="m2-t2"></div>
+            </div>
+
+            <div class="mountain" id="m3">
+                <div class="triangle" id="m3-t1"></div>
+                <div class="triangle" id="m3-t2"></div>
+            </div>
+        </div>
+    </div>
+
+    <h1>Detetive de palavras</h1>
+
+    <div>
+        <p id="hidden-word">Descubra qual é a palavra oculta:</p>
+    </div>
+
+    <div class="hidden" id="divWrongLettersCount">
+        <p> <span id="wrongLettersCountSpan" th:text="${wrongLettersCount}"></span></p>
+    </div>
+
+    <div class="hidden" id="divLettersList">
+        <p><span id="lettersListSpan" th:text="${lettersList}"></span></p>
+    </div>
+
+    <div>
+        <span th:text="${game.guessedWord}" id="guessedWordSpan"></span>
+    </div>
+
+    <label for="difficulty">Escolha o nível de dificuldade:</label>
+    <select name="difficulty" id="difficulty" onchange="changeDifficulty()">
+        <option value="select" selected>Selecione</option>
+        <option value="easy">Fácil</option>
+        <option value="medium">Médio</option>
+        <option value="hard">Difícil</option>
+    </select>
+
+    <form method="POST" action="/guess" id="guess-form">
+        <br><br />
+        <div id="alphabet-buttons" style="text-align: center;">
+            <div>
+                <button id="letter-A" name="letter" value="A" onclick="checkLetter(this)">A</button>
+                <button id="letter-B" name="letter" value="B" onclick="checkLetter(this)">B</button>
+                <button id="letter-C" name="letter" value="C" onclick="checkLetter(this)">C</button>
+                <button id="letter-D" name="letter" value="D" onclick="checkLetter(this)">D</button>
+                <button id="letter-E" name="letter" value="E" onclick="checkLetter(this)">E</button>
+                <button id="letter-F" name="letter" value="F" onclick="checkLetter(this)">F</button>
+                <button id="letter-G" name="letter" value="G" onclick="checkLetter(this)">G</button>
+            </div>
+            <div>
+                <button id="letter-H" name="letter" value="H" onclick="checkLetter(this)">H</button>
+                <button id="letter-I" name="letter" value="I" onclick="checkLetter(this)">I</button>
+                <button id="letter-J" name="letter" value="J" onclick="checkLetter(this)">J</button>
+                <button id="letter-K" name="letter" value="K" onclick="checkLetter(this)">K</button>
+                <button id="letter-L" name="letter" value="L" onclick="checkLetter(this)">L</button>
+                <button id="letter-M" name="letter" value="M" onclick="checkLetter(this)">M</button>
+                <button id="letter-N" name="letter" value="N" onclick="checkLetter(this)">N</button>
+            </div>
+            <div>
+                <button id="letter-O" name="letter" value="O" onclick="checkLetter(this)">O</button>
+                <button id="letter-P" name="letter" value="P" onclick="checkLetter(this)">P</button>
+                <button id="letter-Q" name="letter" value="Q" onclick="checkLetter(this)">Q</button>
+                <button id="letter-R" name="letter" value="R" onclick="checkLetter(this)">R</button>
+                <button id="letter-S" name="letter" value="S" onclick="checkLetter(this)">S</button>
+                <button id="letter-T" name="letter" value="T" onclick="checkLetter(this)">T</button>
+                <button id="letter-U" name="letter" value="U" onclick="checkLetter(this)">U</button>
+            </div>
+            <div>
+                <button id="letter-V" name="letter" value="V" onclick="checkLetter(this)">V</button>
+                <button id="letter-W" name="letter" value="W" onclick="checkLetter(this)">W</button>
+                <button id="letter-X" name="letter" value="X" onclick="checkLetter(this)">X</button>
+                <button id="letter-Y" name="letter" value="Y" onclick="checkLetter(this)">Y</button>
+                <button id="letter-Z" name="letter" value="Z" onclick="checkLetter(this)">Z</button>
+            </div>
+        </div>
+
+    </form>
+
+    <script>
+
+        const guessedWordSpan = document.getElementById("guessedWordSpan");
+        const guessedWord = guessedWordSpan.innerText;
+        const isFirstLoad = localStorage.getItem('firstLoad') === null;
+        const lettersList = document.getElementById("lettersListSpan");
+
+        hideButtons(guessedWord);
+
+        changeButtons(lettersList);
+
+        function checkLetter(button) {
+            const letter = button.value;
+            const guessedWordSpan = document.getElementById("guessedWordSpan");
+            const guessedWord = guessedWordSpan.innerText;
+            const form = document.getElementById("guess-form");
+            form.submit();
+            setTimeout(function () {
+                button.disabled = true;
+            }, 100);
+        }
+
+        function hideButtons(guessedWord) {
+            if (guessedWord === "") {
+                document.getElementById("alphabet-buttons").style.display = "none";
+                document.getElementById("hidden-word").style.display = "none";
+            }
+        }
+
+        function changeDifficulty() {
+            setTimeout(function () {
+                const select = document.getElementById('difficulty');
+                const selectedOption = select.options[select.selectedIndex];
+                const difficulty = selectedOption.value;
+                if (selectedOption.value === 'easy') {
+                    select.classList.add('default');
+                } else {
+                    select.classList.remove('default');
+                }
+                select.classList.remove('medium', 'hard');
+                select.classList.add(difficulty);
+                window.location.href = "/start?difficulty=" + difficulty;
+            }, 100);
+            document.getElementById("alphabet-buttons").style.display = "block";
+            document.getElementById("hidden-word").style.display = "none";
+        }
+
+        function changeButtons(lettersList) {
+            const cleanedLettersList = lettersList.textContent.replace(/[^A-Za-z ]/g, '');
+            const letterValues = cleanedLettersList.trim().split(' ');
+            for (var i = 0; i < letterValues.length; i++) {
+                const letterValue = letterValues[i].trim();
+                const button = document.getElementById(`letter-${letterValue}`);
+                if (button) {
+                    if (!guessedWord.includes(letterValue)) {
+                        button.classList.add("clickedNotIncludes");
+                    } else {
+                        button.classList.add("clickedIncludes");
+                    }
+                    button.classList.add("clicked");
+                    button.disabled = true;
+                }
+            }
+        }
+
+        let div = document.getElementById("wrongLettersCountSpan");
+        showSunRays(div.innerText);
+
+        function showSunRays(n) {
+            let sunRaysNumber = parseInt(n, 10);
+            if (sunRaysNumber <= 0) {
+                document.getElementById("sun-rays-1").style.display = "block";
+            } else {
+                document.getElementById("sun-rays-1").style.display = "none";
+            }
+            if (sunRaysNumber <= 1) {
+                document.getElementById("sun-rays-2").style.display = "block";
+            } else {
+                document.getElementById("sun-rays-2").style.display = "none";
+            }
+            if (sunRaysNumber <= 2) {
+                document.getElementById("sun-rays-3").style.display = "block";
+            } else {
+                document.getElementById("sun-rays-3").style.display = "none";
+            }
+            if (sunRaysNumber <= 3) {
+                document.getElementById("sun-rays-4").style.display = "block";
+            } else {
+                document.getElementById("sun-rays-4").style.display = "none";
+            }
+            if (sunRaysNumber <= 4) {
+                document.getElementById("sun-rays-5").style.display = "block";
+            } else {
+                document.getElementById("sun-rays-5").style.display = "none";
+            }
+            if (sunRaysNumber <= 5) {
+                document.getElementById("sun-rays-6").style.display = "block";
+            } else {
+                document.getElementById("sun-rays-6").style.display = "none";
+            }
+            if (sunRaysNumber <= 6) {
+                document.getElementById("sun-rays-7").style.display = "block";
+            } else {
+                document.getElementById("sun-rays-7").style.display = "none";
+            }
+            if (sunRaysNumber <= 7) {
+                document.getElementById("sun-rays-8").style.display = "block";
+            } else {
+                document.getElementById("sun-rays-8").style.display = "none";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
